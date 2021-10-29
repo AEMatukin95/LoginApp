@@ -54,3 +54,21 @@ extension LoginViewController {
         present(alert, animated: true)
     }
 }
+
+//MARK: - UITextFieldDelegate
+extension LoginViewController: UITextViewDelegate {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == userNameTF {
+            userPasswordTF.becomeFirstResponder()
+        } else {
+            logInAction()
+            performSegue(withIdentifier: "showWelcomeVC", sender: nil)
+        }
+        return true
+    }
+}

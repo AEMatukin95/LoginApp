@@ -26,11 +26,17 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="9Tn-rj-b8H"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KzM-OE-O5L">
                                                 <rect key="frame" x="0.0" y="56" width="240" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="7li-dj-ID4"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -41,7 +47,7 @@
                                         <state key="normal" title="Log In"/>
                                         <connections>
                                             <action selector="logInAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="VR9-xj-ee4"/>
-                                            <segue destination="dTb-pW-pna" kind="presentation" modalPresentationStyle="fullScreen" id="b6L-Wg-dUW"/>
+                                            <segue destination="dTb-pW-pna" kind="presentation" identifier="showWelcomeVC" modalPresentationStyle="fullScreen" id="b6L-Wg-dUW"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="Rn2-0j-hY3">
@@ -121,7 +127,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Es4-Ex-mw8" kind="unwind" unwindAction="unwidWithSegue:" id="87x-0r-NYW"/>
+                                    <segue destination="Es4-Ex-mw8" kind="unwind" unwindAction="unwidWithSegue:" id="H9Z-lD-pqc"/>
                                 </connections>
                             </button>
                         </subviews>
