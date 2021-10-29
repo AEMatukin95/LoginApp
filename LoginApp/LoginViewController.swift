@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
     private let userName = "User"
     private let userPassword = "password"
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let welcomeVC = segue.destination as? WelcomeViewController else { return}
         welcomeVC.user = userName
@@ -56,7 +57,25 @@ extension LoginViewController {
 }
 
 //MARK: - UITextFieldDelegate
-extension LoginViewController: UITextViewDelegate {
+
+//extension LoginViewController: UITextViewDelegate {
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        super.touchesBegan(touches, with: event)
+//        view.endEditing(true)
+//    }
+//
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        if textField == userNameTF {
+//            userPasswordTF.becomeFirstResponder()
+//        } else {
+//            logInAction()
+//            performSegue(withIdentifier: "showWelcomeVC", sender: nil)
+//        }
+//        return true
+//    }
+//}
+
+extension LoginViewController: UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
