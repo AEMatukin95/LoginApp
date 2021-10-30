@@ -12,17 +12,35 @@ class LoginViewController: UIViewController {
     @IBOutlet var userNameTF: UITextField!
     @IBOutlet var userPasswordTF: UITextField!
     
-    private let userName = "User"
-    private let userPassword = "password"
     
+    let model = User.myPerson()
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let welcomeVC = segue.destination as? WelcomeViewController else { return}
-        welcomeVC.user = userName
+        let tabBarController = segue.destination as! UITabBarController
+        let viewControllers = tabBarController.viewControllers
+        if let vc = viewControllers {
+            for viewController in vc {
+                if let welcomeVC = viewController as? WelcomeViewController {
+                    welcomeVC.user = model.person.fullName
+                } else if let personVC = viewController as? PersonViewController {
+                    personVC.myNames = model.person.fullName
+                    personVC.myEmails = model.person.email
+                    personVC.myCitys = model.person.city
+                } else if let infoVC = viewController as? InfoViewController {
+                    infoVC.myFamilys = model.person.family
+                    infoVC.myPets = model.person.pet
+                    infoVC.myWorks = model.person.work
+                }
+            }
+        }
+        
+            
+//        guard let welcomeVC = segue.destination as? WelcomeViewController else { return}
+//        welcomeVC.user = userName
     }
 
     @IBAction func logInAction() {
-        if userNameTF.text != userName || userPasswordTF.text != userPassword {
+        if userNameTF.text != model.userName || userPasswordTF.text != model.userPassword {
             showAlert(
                 title: "Invalid login or password",
                 message: "Please, enter correct login and password",
@@ -32,8 +50,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func forgotRegisterData(_ sender: UIButton) {
         sender.tag == 0
-        ? showAlert(title: "Ooops!", message: "Your name is \(userName) 😉")
-        : showAlert(title: "Ooops!", message: "Your password is \(userPassword) 😉")
+        ? showAlert(title: "Ooops!", message: "Your name is \(model.userName) 😉")
+        : showAlert(title: "Ooops!", message: "Your password is \(model.userPassword) 😉")
     }
     
     @IBAction func unwid(segue: UIStoryboardSegue) {
@@ -58,22 +76,6 @@ extension LoginViewController {
 
 //MARK: - UITextFieldDelegate
 
-//extension LoginViewController: UITextViewDelegate {
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        super.touchesBegan(touches, with: event)
-//        view.endEditing(true)
-//    }
-//
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        if textField == userNameTF {
-//            userPasswordTF.becomeFirstResponder()
-//        } else {
-//            logInAction()
-//            performSegue(withIdentifier: "showWelcomeVC", sender: nil)
-//        }
-//        return true
-//    }
-//}
 
 extension LoginViewController: UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
